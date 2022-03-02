@@ -1,0 +1,28 @@
+name: deploy
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    gh-pages:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 16.x
+
+            - run: cd app && yarn --frozen-lockfile && yarn build
+
+            - uses: crazy-max/ghaction-github-pages@v2.5.0
+              with:
+                  build_dir: app/dist
+                  fqdn: nft.interep.link
+                  jekyll: false
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
