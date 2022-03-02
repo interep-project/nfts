@@ -26,6 +26,9 @@ node_modules/
 # TypeScript cache
 *.tsbuildinfo
 
+# Parcel cache
+.parcel-cache
+
 # Optional npm cache directory
 .npm
 
