@@ -72,9 +72,9 @@ const theme = createTheme({
 function App() {
     const classes = useStyles()
     const [_ethereumProvider, setEthereumProvider] = React.useState<any>()
-    const [_tokenId, setTokenId] = React.useState<any>()
+    const [_tokenId, setTokenId] = React.useState<string>("")
     const [_oAuthProvider, setOAuthProvider] = React.useState<string>("")
-    const [_errorMessage, setErrorMessage] = React.useState<string>()
+    const [_errorMessage, setErrorMessage] = React.useState<string>("")
     const [_activeStep, setActiveStep] = React.useState<number>(0)
 
     React.useEffect(() => {
@@ -111,6 +111,7 @@ function App() {
 
     function resetSteps() {
         setActiveStep(1)
+        setOAuthProvider("")
         setTokenId("")
     }
 
