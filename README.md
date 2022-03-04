@@ -43,6 +43,8 @@
     </h4>
 </div>
 
+This is a simple demo to show how Interep can be used, and it currently allows those in a gold group on Twitter, Reddit or Github to mint a reputation NFT without having their Ethereum account or token linked to any identity on the social networks.
+
 ---
 
 ## Install
