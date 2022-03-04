@@ -13,10 +13,11 @@ contract InterepNFT is ERC721 {
 
     function mint(
         uint256 groupId,
+        bytes32 signal,
         uint256 nullifierHash,
         uint256[8] calldata proof
     ) public {
-        interep.verifyProof(groupId, "nft", nullifierHash, groupId, proof);
+        interep.verifyProof(groupId, signal, nullifierHash, groupId, proof);
 
         _mint(_msgSender(), nullifierHash);
     }
