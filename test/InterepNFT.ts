@@ -1,5 +1,5 @@
 import { expect } from "chai"
-import { Signer, constants, Contract } from "ethers"
+import { Signer, constants, Contract, utils } from "ethers"
 import { run } from "hardhat"
 import { InterepNFT } from "../build/typechain/InterepNFT"
 import { abi as InterepAbi } from "../build/contracts/@interep/contracts/Interep.sol/Interep.json"
@@ -23,12 +23,13 @@ describe("InterepNFT", () => {
     describe("# mint", () => {
         it("Should mint an Interep NFT", async () => {
             const groupId = 1
+            const signal = utils.formatBytes32String("nft")
             const nullifierHash = 2
             const proof = [1, 2, 3, 4, 5, 6, 7, 8]
 
             await interepMock.mock.verifyProof.returns()
 
-            const transaction = contract.mint(groupId, nullifierHash, proof as any)
+            const transaction = contract.mint(groupId, signal, nullifierHash, proof as any)
 
             await expect(transaction)
                 .to.emit(contract, "Transfer")
