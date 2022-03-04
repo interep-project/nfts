@@ -8,11 +8,11 @@
     "dependencies": {
         "@emotion/react": "^11.8.1",
         "@emotion/styled": "^11.8.1",
-        "@ethersproject/solidity": "^5.5.0",
         "@interep/identity": "^0.1.1",
-        "@interep/proof": "^0.2.0",
+        "@interep/proof": "^0.3.0",
         "@metamask/detect-provider": "^1.2.0",
         "@mui/icons-material": "^5.4.4",
+        "@mui/lab": "^5.0.0-alpha.71",
         "@mui/material": "^5.4.4",
         "@mui/styles": "^5.4.4",
         "ethers": "^5.4.6"
