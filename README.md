@@ -43,7 +43,9 @@
     </h4>
 </div>
 
-This is a simple demo to show how Interep can be used, and it currently allows those in a gold group on Twitter, Reddit or Github to mint a reputation NFT without having their Ethereum account or token linked to any identity on the social networks.
+This is a simple demo to show how Interep can be used, and it currently allows those in a Github gold group to mint a reputation NFT without having their Ethereum account or token linked to any identity on the social networks.
+
+You can try the demo here: https://nft.interep.link/.
 
 ---
 
@@ -114,14 +116,14 @@ yarn test:report-gas
 Deploy the InterepNFT contract with a valid Interep address:
 
 ```bash
-yarn deploy --interep-address 0xA86BeB7A435EF57904F927a53fD2118C6d405d41
+yarn deploy --interep-address <address>
 ```
 
 If you want to deploy contracts in a specific network you can set up the `DEFAULT_NETWORK` variable in your `.env` file with the name of one of our supported networks (hardhat, localhost, ropsten, kovan, arbitrum). Or you can specify it as option:
 
 ```bash
-yarn deploy --interep-address 0xA86BeB7A435EF57904F927a53fD2118C6d405d41 --network kovan
-yarn deploy --interep-address 0xA86BeB7A435EF57904F927a53fD2118C6d405d41 --network localhost
+yarn deploy --interep-address <address> --network kovan
+yarn deploy --interep-address <address> --network localhost
 ```
 
 If you want to deploy the contracts on Ropsten, Kovan or Arbitrum remember to provide a valid private key and an Infura API in your `.env` file.
@@ -137,7 +139,7 @@ yarn start
 Deploy an InterepNFT contract:
 
 ```bash
-yarn deploy --interep-address 0xA86BeB7A435EF57904F927a53fD2118C6d405d41 --network localhost
+yarn deploy --interep-address <address> --network localhost
 ```
 
 You can omit `--network localhost` if your `DEFAULT_NETWORK` env variable is equal to `localhost`.

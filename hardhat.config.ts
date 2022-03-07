@@ -51,12 +51,7 @@ const hardhatConfig: HardhatUserConfig = {
         paths: ["@interep/contracts/Interep.sol"]
     },
     defaultNetwork: process.env.DEFAULT_NETWORK || "hardhat",
-    networks: {
-        localhost: {
-            timeout: 50000
-        },
-        ...getNetworks()
-    },
+    networks: getNetworks(),
     gasReporter: {
         currency: "USD",
         enabled: process.env.REPORT_GAS === "true",
