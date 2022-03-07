@@ -2,20 +2,17 @@ import createIdentity from "@interep/identity"
 import createProof from "@interep/proof"
 import detectEthereumProvider from "@metamask/detect-provider"
 import ReplayIcon from "@mui/icons-material/Replay"
+import { LoadingButton } from "@mui/lab"
 import {
     Box,
     Button,
-    FormControl,
     IconButton,
-    InputLabel,
     Link,
     List,
     ListItem,
     ListItemButton,
     ListItemText,
-    MenuItem,
     Paper,
-    Select,
     Step,
     StepContent,
     StepLabel,
@@ -23,13 +20,12 @@ import {
     Theme,
     Typography
 } from "@mui/material"
-import { LoadingButton } from "@mui/lab"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { createStyles, makeStyles } from "@mui/styles"
-import { Contract, ethers, utils } from "ethers"
+import { Contract, ethers } from "ethers"
 import React from "react"
 import ReactDOM from "react-dom"
-import { abi as contractAbi } from "../static/InterepNFT.json"
+import { abi as contractAbi } from "../static/GithubInterepNFT.json"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -73,13 +69,12 @@ const theme = createTheme({
     }
 })
 
-const contractAddress = "0x22179AB5400D677F990c78C6f5a67bFc221658be"
+const contractAddress = "0xB64Cc47290Fd56bAe8df2EE18429Cb330806E397"
 
 function App() {
     const classes = useStyles()
     const [_ethereumProvider, setEthereumProvider] = React.useState<any>()
-    const [_tokenId, setTokenId] = React.useState<string>("")
-    const [_oAuthProvider, setOAuthProvider] = React.useState<string>("")
+    const [_transactionHash, setTransactionHash] = React.useState<string>("")
     const [_error, setError] = React.useState<boolean>(false)
     const [_loading, setLoading] = React.useState<boolean>(false)
     const [_activeStep, setActiveStep] = React.useState<number>(0)
@@ -104,7 +99,7 @@ function App() {
                 _ethereumProvider.on("accountsChanged", (newAccounts: string[]) => {
                     if (newAccounts.length === 0) {
                         setActiveStep(0)
-                        setTokenId("")
+                        setTransactionHash("")
                     }
                 })
             }
@@ -118,45 +113,54 @@ function App() {
 
     function resetSteps() {
         setActiveStep(1)
-        setOAuthProvider("")
-        setTokenId("")
+        setTransactionHash("")
     }
 
     async function connect() {
         await _ethereumProvider.request({ method: "eth_requestAccounts" })
-        handleNext()
-    }
-
-    async function selectProvider(event: any) {
-        setOAuthProvider(event.target.value)
+        await _ethereumProvider.request({
+            method: "wallet_switchEthereumChain",
+            params: [
+                {
+                    chainId: "0x2a"
+                }
+            ]
+        })
         handleNext()
     }
 
     async function mintNFT() {
         const ethersProvider = new ethers.providers.Web3Provider(_ethereumProvider)
         const signer = ethersProvider.getSigner()
-        const identity = await createIdentity((message: string) => signer.signMessage(message), _oAuthProvider)
+        const identity = await createIdentity((message: string) => signer.signMessage(message), "Github")
 
-        const groupId = {
-            provider: _oAuthProvider.toLowerCase(),
-            name: "gold"
-        }
-        const externalNullifier = utils.solidityKeccak256(["string", "string"], [groupId.provider, groupId.name])
-        const signal = "nft"
+        // The external nullifier is the group id.
+        const externalNullifier = BigInt(
+            "19792997538846952138225145850176205122934145224103991348074597128209030420613"
+        )
+        const signal = "github-nft"
 
         const zkFiles = { wasmFilePath: "./semaphore.wasm", zkeyFilePath: "./semaphore_final.zkey" }
 
         setLoading(true)
 
         try {
-            const proof = await createProof(identity, groupId, externalNullifier, signal, zkFiles)
+            const proof = await createProof(
+                identity,
+                {
+                    provider: "github",
+                    name: "gold"
+                },
+                externalNullifier,
+                signal,
+                zkFiles
+            )
             const contract = new Contract(contractAddress, contractAbi)
+            const transaction = await contract.connect(signer).mint(proof[2], proof[4])
 
-            setTokenId(proof[2])
+            setTransactionHash(transaction.hash)
 
-            await contract.connect(signer).mint(proof[0], utils.formatBytes32String(signal), proof[2], proof[4])
-
-            setActiveStep(3)
+            setActiveStep(2)
         } catch (error) {
             console.error(error)
 
@@ -173,11 +177,11 @@ function App() {
             <Paper className={classes.container} elevation={0} square={true}>
                 <Box className={classes.content}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
-                        Interep NFTs
+                        Github Interep NFTs
                     </Typography>
 
                     <Typography variant="body1" sx={{ mb: 4 }}>
-                        Join an Interep gold group on&nbsp;
+                        Join an Interep Github gold group on&nbsp;
                         <Link href="https://kovan.interep.link" underline="hover" rel="noreferrer" target="_blank">
                             kovan.interep.link
                         </Link>
@@ -199,25 +203,6 @@ function App() {
                             </StepContent>
                         </Step>
                         <Step>
-                            <StepLabel>Select an Interep provider</StepLabel>
-                            <StepContent style={{ width: 400 }}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="oauth-provider-select-label">Provider</InputLabel>
-                                    <Select
-                                        labelId="oauth-provider-select-label"
-                                        value={_oAuthProvider}
-                                        label="Provider"
-                                        variant="outlined"
-                                        onChange={selectProvider}
-                                    >
-                                        <MenuItem value="Twitter">Twitter</MenuItem>
-                                        <MenuItem value="Github">Github</MenuItem>
-                                        <MenuItem value="Reddit">Reddit</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </StepContent>
-                        </Step>
-                        <Step>
                             <StepLabel error={!!_error}>Mint your Interep NFT</StepLabel>
                             <StepContent style={{ width: 400 }}>
                                 <LoadingButton
@@ -233,7 +218,7 @@ function App() {
                         </Step>
                     </Stepper>
 
-                    {_activeStep === 3 && (
+                    {_activeStep === 2 && (
                         <Paper className={classes.results} sx={{ p: 3 }}>
                             <IconButton
                                 onClick={() => resetSteps()}
@@ -243,15 +228,16 @@ function App() {
                                 <ReplayIcon />
                             </IconButton>
                             <Typography variant="body1">
-                                You have minted your Interep NFT successfully:&nbsp;
+                                You have minted your Interep NFT successfully. Check the&nbsp;
                                 <Link
-                                    href={"https://kovan.etherscan.io/token/" + contractAddress + "/?a=" + _tokenId}
+                                    href={"https://kovan.etherscan.io/tx/" + _transactionHash}
                                     underline="hover"
                                     rel="noreferrer"
                                     target="_blank"
                                 >
-                                    {_tokenId.substring(0, 10)}
+                                    transaction
                                 </Link>
+                                !
                             </Typography>
                         </Paper>
                     )}
@@ -270,7 +256,7 @@ function App() {
                                 </ListItem>
                                 <ListItemButton
                                     component="a"
-                                    href={"https://kovan.etherscan.io/token/" + contractAddress + "/?a=" + _tokenId}
+                                    href={"https://kovan.etherscan.io/token/" + contractAddress}
                                     target="_blank"
                                 >
                                     <ListItemText secondary="• Click here to check if you have already minted your NFT." />
