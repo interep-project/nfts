@@ -69,7 +69,7 @@
         "typescript": "^4.5.2"
     },
     "dependencies": {
-        "@interep/contracts": "^0.4.0",
+        "@interep/contracts": "^0.4.1",
         "@openzeppelin/contracts": "^4.5.0"
     },
     "config": {
