@@ -145,7 +145,7 @@ function App() {
         setLoading(true)
 
         try {
-            const proof = await createProof(
+            const { publicSignals, solidityProof } = await createProof(
                 identity,
                 {
                     provider: "github",
@@ -156,7 +156,7 @@ function App() {
                 zkFiles
             )
             const contract = new Contract(contractAddress, contractAbi)
-            const transaction = await contract.connect(signer).mint(proof[2], proof[4])
+            const transaction = await contract.connect(signer).mint(publicSignals.nullifierHash, solidityProof)
 
             setTransactionHash(transaction.hash)
 

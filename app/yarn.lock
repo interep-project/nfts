@@ -799,10 +799,10 @@
     fastfile "0.0.19"
     ffjavascript "^0.2.48"
 
-"@interep/api@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@interep/api/-/api-0.2.0.tgz#ba4ba6cfff87b131424e2b82710e5ef813bdbe90"
-  integrity sha512-JahJkeQCo83iIsrFH0rXsMol6pMCrDr0MSYu7Qu3o9ggWSVCqZeqqD6pTdD11yI+xyJhFc6HiC60CCf/nbxb8Q==
+"@interep/api@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@interep/api/-/api-0.4.1.tgz#5b604ec2745e52254aebdf4c92b7754d8ccdbd30"
+  integrity sha512-nHOy5NX7aCBXfVNOAAgKgNKKzR1zW+npHyVcGaIYdScXuxYAXP22+gb8Uv9jRaQfnHlodXlYf63jgeCT5S6/uQ==
   dependencies:
     "@interep/reputation" "^0.1.0"
     axios "^0.23.0"
@@ -814,15 +814,18 @@
   dependencies:
     "@zk-kit/identity" "^1.4.1"
 
-"@interep/proof@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@interep/proof/-/proof-0.3.0.tgz#f5b6bdacc6dca9e59087e7354a7f740d116c1f4f"
-  integrity sha512-MI8fCjzaaukf0Ary4rbM1eapRXAuaM5xq/OrOG9+L0mqzoVor6rW3R/qtouiALCgdIcTJuu/ddwPeTlDl48PXg==
+"@interep/proof@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@interep/proof/-/proof-0.4.2.tgz#d94ae940fda0e1ef45df1f6f625e74d9415b4c58"
+  integrity sha512-CGerhKlATMA09j4G3tw/wXmaGRrn0MFsPthLGeK2kFR6gO5V4cvL6jT+atVWFtZhaxKXq4AwlU/B2zJB1xjoFw==
   dependencies:
     "@ethersproject/solidity" "^5.5.0"
-    "@interep/api" "^0.2.0"
+    "@ethersproject/strings" "^5.5.0"
+    "@interep/api" "^0.4.1"
     "@zk-kit/identity" "^1.4.1"
+    "@zk-kit/incremental-merkle-tree" "^0.4.3"
     "@zk-kit/protocols" "^1.11.0"
+    circomlibjs "0.0.8"
 
 "@interep/reputation@^0.1.0":
   version "0.1.0"
