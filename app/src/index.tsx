@@ -69,7 +69,7 @@ const theme = createTheme({
     }
 })
 
-const contractAddress = "0x05c3416ae2E49Ce649223B70e4d745e5686F9860"
+const contractAddress = "0x32deCa7128682909DA7C1A846C9a818821D3B5eC"
 
 function App() {
     const classes = useStyles()

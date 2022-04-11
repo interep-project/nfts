@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@appliedzkp/semaphore-contracts@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@appliedzkp/semaphore-contracts/-/semaphore-contracts-0.6.2.tgz#2ba43bb81816d886137e75b4aacf1947a84f8c64"
-  integrity sha512-g9Iv9kSDlN4kCzc2t21juFxRaP46YKq+AIDy0i90fjsBF8ZcmfjdjBM4C3MRpbxhvIYRiIYttTlaUzHwQ4dQNg==
+"@appliedzkp/semaphore-contracts@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@appliedzkp/semaphore-contracts/-/semaphore-contracts-0.8.0.tgz#071c9d85bcc216c9eb606237e8971a42148de5d5"
+  integrity sha512-4fSGv9D8Py6CiYPqyn4+ob0bndv1sdHo0CszCDejWawpFFr0L6MTVZThq026q0DX+tPyVQawpxUn7NvtNGG9eg==
   dependencies:
     "@openzeppelin/contracts" "^4.4.2"
     "@zk-kit/incremental-merkle-tree.sol" "^0.3.1"
@@ -773,12 +773,12 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@interep/contracts@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@interep/contracts/-/contracts-0.4.1.tgz#95c38a32d9b7abac0d3deb88c2eb76a63fd7f43f"
-  integrity sha512-WVPRFg2KYcZZW06+s23kwhyHyZ2UPnI7WdJ/St5ROzR6AV7Z941tb6fZH3O2gZL0ak1A4PVXjJ43V03x1Dmt+Q==
+"@interep/contracts@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@interep/contracts/-/contracts-0.5.0.tgz#a0924c570b9079f09afbab595c117de921ecb501"
+  integrity sha512-/F0Ye64EuRLcOvzV3FgFxwX24MrhzLYOV2i+Oetl2stFhW0bPrJLUi3EyEln8ewO+xvvU7OdbMxrUCLlRzq9hQ==
   dependencies:
-    "@appliedzkp/semaphore-contracts" "^0.6.2"
+    "@appliedzkp/semaphore-contracts" "^0.8.0"
     "@openzeppelin/contracts" "^4.5.0"
 
 "@metamask/eth-sig-util@^4.0.0":
