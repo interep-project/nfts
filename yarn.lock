@@ -773,10 +773,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@interep/contracts@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@interep/contracts/-/contracts-0.5.0.tgz#a0924c570b9079f09afbab595c117de921ecb501"
-  integrity sha512-/F0Ye64EuRLcOvzV3FgFxwX24MrhzLYOV2i+Oetl2stFhW0bPrJLUi3EyEln8ewO+xvvU7OdbMxrUCLlRzq9hQ==
+"@interep/contracts@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@interep/contracts/-/contracts-0.6.0.tgz#b9ce2077734e89843a2e350af9553c7b0db98d28"
+  integrity sha512-Tot6yy6dHCJJsM+2b7sBMN03TEu1sPW2Qzymu2ItbDXh3MmrbUaWblwZ+U5x/UE3ZpeSfP+ZFzGO1d1b35kJug==
   dependencies:
     "@appliedzkp/semaphore-contracts" "^0.8.0"
     "@openzeppelin/contracts" "^4.5.0"

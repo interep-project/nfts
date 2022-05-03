@@ -1,5 +1,5 @@
 {
-    "name": "interep-nfts-app",
+    "name": "interep-nfts",
     "version": "0.1.0",
     "scripts": {
         "start": "parcel serve --open --no-cache src/index.html",
@@ -9,7 +9,7 @@
         "@emotion/react": "^11.8.1",
         "@emotion/styled": "^11.8.1",
         "@interep/identity": "^0.1.1",
-        "@interep/proof": "^0.4.3",
+        "@interep/proof": "^0.5.0",
         "@metamask/detect-provider": "^1.2.0",
         "@mui/icons-material": "^5.4.4",
         "@mui/lab": "^5.0.0-alpha.71",

@@ -69,7 +69,7 @@ const theme = createTheme({
     }
 })
 
-const contractAddress = "0x32deCa7128682909DA7C1A846C9a818821D3B5eC"
+const contractAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
 
 function App() {
     const classes = useStyles()
@@ -140,8 +140,6 @@ function App() {
         )
         const signal = "github-nft"
 
-        const zkFiles = { wasmFilePath: "./semaphore.wasm", zkeyFilePath: "./semaphore_final.zkey" }
-
         setLoading(true)
 
         try {
@@ -153,7 +151,8 @@ function App() {
                 },
                 externalNullifier,
                 signal,
-                zkFiles
+                { wasmFilePath: "./semaphore.wasm", zkeyFilePath: "./semaphore_final.zkey" },
+                "local"
             )
             const contract = new Contract(contractAddress, contractAbi)
             const transaction = await contract.connect(signer).mint(publicSignals.nullifierHash, solidityProof)
